@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "shopify-node-api": "^1.8.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "shopify-account-test",
+  "description": "A simple express server to test Shopify's API",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jborek/shopify-account-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jborek/shopify-account-test/issues"
+  },
+  "homepage": "https://github.com/jborek/shopify-account-test#readme"
+}
