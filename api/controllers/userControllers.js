@@ -1,50 +1,35 @@
 require('dotenv').config();
 
-const shopifyAPI = require('shopify-node-api');
+const Shopify = require('shopify-api-node');
 
-const Shopify = new shopifyAPI({
-  shop: 'northernbrewer-staging',
-  shopify_api_key: process.env.SHOPIFY_API_KEY,
-  access_token: process.env.ACCESS_TOKEN
+const shopify = new Shopify({
+  shopName: 'northernbrewer-staging',
+  apiKey: process.env.SHOPIFY_API_KEY,
+  password: process.env.PASSWORD
 })
 
-const getCustomers = (req, res) => {
-  Shopify.get('/admin/customers.json', function(err, data, headers){
-    if (err) {
-      res.json(err)
-    } else {
-      console.log(headers);
-      res.json(data);
-    }
-  })
+const getCustomer = (req, res) => {
+  const { id } = req.query;
+  shopify.customer.get(id)
+    .then(customer => res.json(customer))
+    .catch(err => res.json(err));
 }
 
 const updateCustomer = (req, res) => {
   const { id } = req.body;
-  console.log(id);
-  Shopify.put(`admin/customers/${id}.json`, req.body, function(err, data, headers){
-    if (err) {
-      res.json(err)
-    } else {
-      console.log(headers);
-      res.json(data);
-    }
-  })
+  shopify.customer.update(id, req.body)
+    .then(customer => res.json(customer))
+    .catch(err => res.json(err));
 }
 
 const createCustomer = (req, res) => {
-  Shopify.post('/admin/customers.json', req.body, function(err, data, handlers) {
-    if (err) {
-      res.json(err)
-    } else {
-      console.log(headers);
-      res.json(data);
-    }
-  })
+  shopify.customer.create(req.body)
+    .then(customer => res.json(customer))
+    .catch(err => res.json(err));
 }
 
 module.exports = {
-  getCustomers,
+  getCustomer,
   updateCustomer,
   createCustomer
 }
