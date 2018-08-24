@@ -8,8 +8,20 @@ const Shopify = new shopifyAPI({
   access_token: process.env.ACCESS_TOKEN
 })
 
-const getProducts = (req, res) => {
-  Shopify.get('/admin/products.json', function(err, data, headers){
+const getCustomers = (req, res) => {
+  Shopify.get('/admin/customers.json', function(err, data, headers){
+    if (err) {
+      res.json(err)
+    } else {
+      console.log(headers);
+      res.json(data);
+    }
+  })
+}
+
+const updateCustomer = (req, res) => {
+  const { id } = req.body;
+  Shopify.put(`admin/customers/${id}.json`, req.body, function(err, data, headers){
     if (err) {
       res.json(err)
     } else {
@@ -20,5 +32,6 @@ const getProducts = (req, res) => {
 }
 
 module.exports = {
-  getProducts
+  getCustomers,
+  updateCustomer
 }
