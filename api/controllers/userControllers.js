@@ -21,7 +21,19 @@ const getCustomers = (req, res) => {
 
 const updateCustomer = (req, res) => {
   const { id } = req.body;
+  console.log(id);
   Shopify.put(`admin/customers/${id}.json`, req.body, function(err, data, headers){
+    if (err) {
+      res.json(err)
+    } else {
+      console.log(headers);
+      res.json(data);
+    }
+  })
+}
+
+const createCustomer = (req, res) => {
+  Shopify.post('/admin/customers.json', req.body, function(err, data, handlers) {
     if (err) {
       res.json(err)
     } else {
@@ -33,5 +45,6 @@ const updateCustomer = (req, res) => {
 
 module.exports = {
   getCustomers,
-  updateCustomer
+  updateCustomer,
+  createCustomer
 }
