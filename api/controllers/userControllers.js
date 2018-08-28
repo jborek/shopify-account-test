@@ -16,6 +16,7 @@ const getCustomer = (req, res) => {
 }
 
 const updateCustomer = (req, res) => {
+  console.log('hit');
   const { id } = req.body;
   console.log(req.body);
   shopify.customer.update(id, req.body)
