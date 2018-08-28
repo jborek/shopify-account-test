@@ -17,6 +17,7 @@ const getCustomer = (req, res) => {
 
 const updateCustomer = (req, res) => {
   const { id } = req.body;
+  console.log(req.body);
   shopify.customer.update(id, req.body)
     .then(customer => res.json(customer))
     .catch(err => res.json(err));
