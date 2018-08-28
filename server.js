@@ -14,7 +14,7 @@ const routes = require('./api/routes/routes');
 server.use(bodyParser.json());
 server.use(CORS());
 
-const whitelist = ['://localhost:3000', 'https://northernbrewer-staging.myshopify.com', 'https://northernbrewer.myshopify.com'];
+const whitelist = ['https://northernbrewer-staging.myshopify.com', 'https://northernbrewer.myshopify.com'];
 const corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin) != -1){
