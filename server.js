@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 const routes = require('./api/routes/routes');
 
 server.use(bodyParser.json());
-server.use(CORS());
 
 const whitelist = ['https://northernbrewer-staging.myshopify.com', 'https://northernbrewer.myshopify.com'];
 const corsOptions = {
@@ -25,6 +24,7 @@ const corsOptions = {
   },
   methods: 'POST'
 }
+server.use(CORS(corsOptions));
 
 routes(server);
 

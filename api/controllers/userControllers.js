@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+ 
 const Shopify = require('shopify-api-node');
 
 const shopify = new Shopify({
@@ -16,9 +16,7 @@ const getCustomer = (req, res) => {
 }
 
 const updateCustomer = (req, res) => {
-  console.log(req);
   const { id } = req.body;
-  console.log(req.body);
   shopify.customer.update(id, req.body)
     .then(customer => res.json(customer))
     .catch(err => res.json(err));
